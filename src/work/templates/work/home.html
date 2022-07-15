@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<h1>Главная страница</h1>
+<a href="{% url 'add_all' %}"><button style="background: cian; color: #494d4e">Добавить данные</button></a>
+<table>
+{% for contract in contracts %}
+        <tr>
+            <td><a href="{% url 'contract_detail' contract.id %}"><p>{{ contract.about_contract}}</p></a></td>
+            <td>{{ contract.company}}</td>
+            <td>{{ contract.contractor}}</td>
+            <td>{{ contract.cipher}}</td>
+            <td>{{ contract.is_in_isup}}</td>
+            <td>{{ contract.number_DS}}</td>
+            <td>{{ contract.DS_date}}</td>
+            <td>{{ contract.transit}}</td>
+            <td>{{ contract.risks}}</td>
+            <td>{{ contract.vat}}</td>
+            <td>{{ contract.end_date }}</td>
+            <td>{{ contract.main_status }}</td>
+            <td>{{ contract.money_receipt }}</td>
+            <td>{{ contract.risk_signs }}</td>
+            <td>{{ contract.reaction }}</td>
+        </tr>
+{% endfor %}
+</table>
+{% endblock %}

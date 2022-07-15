@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить данные{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}">Главная</a>
+<a href="{% url '+contractor' %}"><button>Добавить контрагента</button></a>
+<a href="{% url '+company' %}"><button>Добавить компанию</button></a>
+<a href="{% url 'add_pm' %}"><button>Добавить ПМ</button></a>
+<a href="{% url '+contract' %}"><button>Добавить договор</button></a>
+{% endblock %}

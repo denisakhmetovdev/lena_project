@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Информация о контракте{% endblock %}
+
+
+{%block content%}
+<a href="{% url 'home' %}">Главная</a>
+<h2>Подробнее о контракте: {{contract}}</h2>
+    <p><strong>Компания: </strong>{{ contract.company}}</p>
+    <p><strong>Контрагент: </strong>{{ contract.contractor}}</p>
+    <p><strong>Предмет договора: </strong>{{ contract.about_contract}}</p>
+    <p><strong>Шифр: </strong>{{ contract.cipher}}</p>
+    <p><strong>Наличие в ИСУП: </strong>{{ contract.is_in_isup}}</p>
+    <p><strong>Номер ДС: </strong>{{ contract.number_DS}}</p>
+    <p><strong>Дата ДС: </strong>{{ contract.DS_date}}</p>
+    <p><strong>Транзит: </strong>{{ contract.transit}}</p>
+    <p><strong>Карта рисков: </strong>{{ contract.risks}}</p>
+    <p><strong>Сумма НДС: </strong>{{ contract.vat}}</p>
+    <p><strong>Дата заключения договора: </strong>{{ contract.start_date}}</p>
+    <p><strong>Срок действия договора: </strong>{{ contract.end_date }}</p>
+    <p><strong>Срок исполнения работ по договору: </strong>{{ contract.work_completion_time }}</p>
+    <p><strong>Дата завершения работ: </strong>{{ contract.completion_date }}</p>
+    <p><strong>Статус договора: </strong>{{ contract.main_status }}</p>
+    <p><strong>Дата поступления денег: </strong>{{ contract.money_receipt }}</p>
+    <p><strong>Дата фактического исполнения: </strong>{{ contract.actual_performance }}</p>
+    <p><strong>Проявление рисков: </strong>{{ contract.risks_signs }}</p>
+    <p><strong>Меры реагирования при проявлении рисков: </strong>{{ contract.reaction }}</p><br>
+
+    <h4>Статус за месяц</h4>
+    <a href="{% url '+month_status' contract.id %}"><button type="submit">Добавить статус за месяц</button></a>
+    {% for status in month_statuses %}
+    <p><strong>Исполнение: </strong>{{ status.performance }}</p>
+    <p><strong>Дата: </strong>{{ status.date }}</p>
+    {% if status.certificate_of_completion %}
+        <p><strong>Акт выполненных работ</strong>: АВР есть</p>
+    {% else %}
+        <p><strong>Акт выполненных работ</strong>: АВР ОТСУТСТВУЕТ</p>
+    {% endif %}
+    {% endfor %}<br><br>
+
+    <h4>История статусов</h4>
+    <a href="{% url '+status' contract.id %}"><button type="submit">Добавить статус</button></a>
+    {%for status in statuses%}
+        <p><strong>Статус:</strong> {{status.comment}}</p>
+        <p><strong>Дата:</strong> {{status.date}}</p>
+    {%endfor%}
+
+
+{%endblock%}
